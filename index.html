@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            overflow-x: hidden;
+        }
+
+        /* Top burnt orange rectangle */
+        .header {
+            background-color: #CC5500; /* burnt orange color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            position: relative;
+            height: 80vh; /* 80% of the viewport height */
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header p {
+            margin: 20px 0;
+        }
+
+        /* Truth, Beauty, Progress section with image */
+        .top-right {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .top-right h3 {
+            margin: 5px 0;
+        }
+
+        .top-right img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        /* Icons at the bottom-right of the header */
+        .social-links {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+        }
+
+        .social-links a {
+            margin-left: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Container for the clickable boxes */
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        /* Style for individual boxes */
+        .box {
+            background-color: white;
+            border: 2px dashed black;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover {
+            background-color: #f0f0f0;
+        }
+
+        .box p {
+            font-size: 0.5em;
+            margin: 0;
+        }
+
+        /* Hidden gallery content */
+        .gallery {
+            display: none;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        /* Slide effect for the boxes */
+        .slide-up {
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-80vh); /* Slide up to cover the orange header */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section -->
+    <div class="header">
+        <div class="header-content">
+            <h1>About Me</h1>
+            <p>Here are some details about my background, skills, and experiences. I am passionate about the intersection of technology, innovation, and progress. With years of experience in the field, I've had the privilege to work on diverse projects ranging from engineering solutions to microgrid research.</p>
+            <p>Feel free to explore more below about the work I do and the areas I specialize in.</p>
+        </div>
+
+        <!-- Truth, Beauty, Progress text and image -->
+        <div class="top-right">
+            <h3>Truth</h3>
+            <h3>Beauty</h3>
+            <h3>Progress</h3>
+            <img src="https://via.placeholder.com/50" alt="Profile Picture">
+        </div>
+
+        <!-- Social media links -->
+        <div class="social-links">
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+            <a href="https://substack.com" target="_blank">Substack</a>
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <!-- Box links -->
+    <div class="box-container">
+        <div class="box" onclick="showGallery(0)">
+            <div>00</div>
+            <p>Engineering</p>
+        </div>
+        <div class="box" onclick="showGallery(1)">
+            <div>01</div>
+            <p>Design</p>
+        </div>
+        <div class="box" onclick="showGallery(2)">
+            <div>02</div>
+            <p>Innovation</p>
+        </div>
+        <div class="box" onclick="showGallery(3)">
+            <div>03</div>
+            <p>Research</p>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery-0" class="gallery">
+        <h2>Gallery 00</h2>
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 00">
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 00">
+    </div>
+    <div id="gallery-1" class="gallery">
+        <h2>Gallery 01</h2>
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 01">
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 01">
+    </div>
+    <div id="gallery-2" class="gallery">
+        <h2>Gallery 02</h2>
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 02">
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 02">
+    </div>
+    <div id="gallery-3" class="gallery">
+        <h2>Gallery 03</h2>
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 03">
+        <img src="https://via.placeholder.com/500x300" alt="Gallery 03">
+    </div>
+
+    <!-- JavaScript to show gallery and slide effect -->
+    <script>
+        function showGallery(id) {
+            // Hide all galleries
+            let galleries = document.querySelectorAll('.gallery');
+            galleries.forEach(function(gallery) {
+                gallery.style.display = 'none';
+            });
+            
+            // Show the selected gallery
+            document.getElementById('gallery-' + id).style.display = 'block';
+
+            // Slide up the boxes
+            let boxes = document.querySelectorAll('.box');
+            boxes.forEach(function(box) {
+                box.classList.add('slide-up');
+            });
+        }
+    </script>
+
+</body>
+</html>
