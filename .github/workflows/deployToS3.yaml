@@ -1,0 +1,31 @@
+name: AWS example workflow
+
+on:
+  push
+
+env:
+  BUCKET_NAME : "githubawscredss3uploadtest"
+  AWS_REGION : "us-west-2"
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs:
+  S3PackageUpload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::307393343262:role/GithubS3Access
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Upload a file to AWS S3
+      - name: Copy index.html to S3
+        run: |
+          aws s3 cp ./public/index.html s3://${{ env.BUCKET_NAME }}/
