@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +15,25 @@
             overflow-x: hidden;
         }
 
+        /* Content section (boxes, gallery, etc.) */
+        main {
+            flex-grow: 1;
+            /* Allow content to grow and take up space */
+        }
+
         /* Top burnt orange rectangle */
         .header {
-            background-color: #CC5500; /* burnt orange color */
+            background-color: #CC5500;
+            /* burnt orange color */
             color: white;
             padding: 20px;
             text-align: center;
             font-size: 2em;
             position: relative;
-            height: 80vh; /* 80% of the viewport height */
+            height: 75vh;
+            /* 80% of the viewport height */
+            margin-bottom: 20px;
+            /* Space between header and boxes */
         }
 
         .header-content {
@@ -38,12 +49,13 @@
         .top-right {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 30px;
             text-align: right;
         }
 
         .top-right h3 {
             margin: 5px 0;
+            color: white;
         }
 
         .top-right img {
@@ -56,27 +68,38 @@
         /* Icons at the bottom-right of the header */
         .social-links {
             position: absolute;
-            bottom: 10px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            /* Stack the links vertically */
+            align-items: flex-end;
+            /* Align the links to the left */
+            /* Ensure the links are above other elements */
         }
 
         .social-links a {
-            margin-left: 15px;
+            margin-bottom: 10px;
             color: white;
             text-decoration: none;
+            display: flex;
+            font-size: 0.5em;
+            /* Make the font smaller */
         }
 
         /* Container for the clickable boxes */
         .box-container {
             display: flex;
             justify-content: space-around;
-            margin-top: 50px;
+            margin: 20px auto;
+            /* Adds space below boxes */
         }
 
         /* Style for individual boxes */
         .box {
             background-color: white;
-            border: 2px dashed black;
+            /*border: 2px dashed black;*/
             width: 100px;
             height: 100px;
             display: flex;
@@ -84,7 +107,7 @@
             justify-content: center;
             align-items: center;
             font-size: 2em;
-            text-align: center;
+            text-align: left;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -96,6 +119,18 @@
         .box p {
             font-size: 0.5em;
             margin: 0;
+        }
+
+        /* Make the number inside the box larger */
+        .box div {
+            font-size: 1.6em;
+            /* Larger font size for the number */
+        }
+
+        /* Make the text smaller than the number */
+        .box p {
+            font-size: 0.5em;
+            /* Smaller font size for the text */
         }
 
         /* Hidden gallery content */
@@ -112,46 +147,183 @@
             border-radius: 5px;
         }
 
-        /* Slide effect for the boxes */
-        .slide-up {
-            animation: slideUp 1s forwards;
+        /* Add a background element that will slide up with the content */
+        .background-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: -1;
+            /* Place it below the boxes */
+            transition: transform 1s ease;
         }
 
+        /* Adjust the slide-up effect for the background and boxes */
+        .slide-up-background {
+            transform: translateY(-80vh);
+            /* Slide background up */
+        }
+
+        .slide-up-boxes {
+            animation: slideUp 1s forwards;
+            /* Slide boxes up */
+        }
+
+        /* Slide-up animation for the boxes */
         @keyframes slideUp {
             0% {
                 transform: translateY(0);
             }
+
             100% {
-                transform: translateY(-80vh); /* Slide up to cover the orange header */
+                transform: translateY(-80vh);
             }
+        }
+
+        /* Ensure gallery is on top of the background */
+        .gallery {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Footer styles */
+        .footer {
+            border-top: 1px solid grey;
+            /* Thin grey line */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: grey;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Initially, hide the side menu */
+        .side-menu {
+            width: 200px;
+            background-color: white;
+            color: grey;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            /* Take full height when open */
+            display: none;
+            /* Initially hidden */
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 20px;
+            z-index: 10;
+            /* Ensure it stays on top of other content */
+        }
+
+        /* Add a class to make it visible when needed */
+        .side-menu.show {
+            display: flex;
+        }
+
+        /* Menu item styles */
+        .side-menu a {
+            color: black;
+            text-decoration: none;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        /* Highlight menu item on hover */
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+
+        /* Styling for selected item */
+        .side-menu a.selected {
+            background-color: #4CAF50;
+        }
+
+        /* Styling for images */
+        .main-image {
+            max-width: 100%;
+            max-height: 400px;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for text */
+        .main-text {
+            font-size: 1.5em;
+            color: #333;
         }
     </style>
 </head>
+
 <body>
+    <!-- Background layer that will slide up with the boxes -->
+    <div id="background-layer" class="background-slide"></div>
 
-    <!-- Header section -->
     <div class="header">
-        <div class="header-content">
-            <h1>About Me</h1>
-            <p>Here are some details about my background, skills, and experiences. I am passionate about the intersection of technology, innovation, and progress. With years of experience in the field, I've had the privilege to work on diverse projects ranging from engineering solutions to microgrid research.</p>
-            <p>Feel free to explore more below about the work I do and the areas I specialize in.</p>
+        <div class="header-content" style="text-align:left; margin: 0 40px;">
+            <div style="margin-bottom: 40px;"></div>
+            <h1 style="font-size: 1.5em; margin: 0;">Hi, I'm Carson</h1>
+            <div style="margin-bottom: 30px;"></div>
+            <p style="font-size: 1em; margin: 10px 0;">I’m excited about energy, automation, and people</p>
+            <div style="margin-bottom: 30px;"></div>
+            <p style="font-size: .55em; line-height: 1.1;">Right now, I am..</p>
+            <p style="font-size: .55em; line-height: .5;"> - Working at Blue Origin on a satellite platform for
+                long-term
+                orbital infrastructure</p>
+            <p style="font-size: .55em; line-height: .5;">- Studying Electrical and Computer Engineering as a graduate
+                student at University of Washington</p>
+            <p style="font-size: .55em; line-height: .5;">- Building a tool for accelerating renewable energy build-out
+            </p>
+            <p style="font-size: .55em; line-height: .5;">- Writing short-story fiction and a book about moss</p>
+            <p style="font-size: .55em; line-height: .5;">- Training to summit all 5 stratovolcanoes in Washington</p>
+            <div style="margin-bottom: 40px;"></div>
+            <p style="font-size: .55em; line-height: .5;">My imagination is captured by..</p>
+            <p style="font-size: .55em; line-height: .5;">- The unspeakably vast world of applications for
+                renewable-powered energy too-cheap-to-meter</p>
+            <p style="font-size: .55em; line-height: .5;">- The great human and robotic space exploration odyssey</p>
+            <p style="font-size: .55em; line-height: .5;">- Creation that makes you question where nature ends and human
+                begins</p>
+            <p style="font-size: .55em; line-height: .5;">- The electrical, political, and economic complexities of
+                electrifying the grids of the globe</p>
+            <p style="font-size: .55em; line-height: .5;">- Moss</p>
+            <p style="font-size: .55em; line-height: .5;">- Juiced-up human-computer-human interaction and the
+                wonderfully wacky world of augmented reality</p>
+            <div style="margin-bottom: 40px;"></div>
+            <p style="font-size: .55em; line-height: .5; white-space: nowrap;">I am a runner, cyclist, mountain-climber,
+                self-proclaimed handyman, music-enjoyer, writer, data junkie, & environmentalist. I'm also usually
+                outside!</p>
+            <p style="font-size: .55em; line-height: .5;">Reach out if any of that strikes a chord
+                with you!</p>
         </div>
 
-        <!-- Truth, Beauty, Progress text and image -->
-        <div class="top-right">
-            <h3>Truth</h3>
-            <h3>Beauty</h3>
-            <h3>Progress</h3>
-            <img src="https://via.placeholder.com/50" alt="Profile Picture">
-        </div>
-
-        <!-- Social media links -->
+        <!-- Social media links inside header -->
         <div class="social-links">
-            <a href="https://twitter.com" target="_blank">Twitter</a>
-            <a href="https://substack.com" target="_blank">Substack</a>
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://github.com/carsumptive" target="_blank">GitHub</a>
+            <a href="https://x.com/CarsonLansdowne" target="_blank">Twitter</a>
+            <a href="https://www.linkedin.com/in/carsonlansdowne/" target="_blank">LinkedIn</a>
+            <a href="https://apparent.substack.com/" target="_blank">Substack</a>
+            <a href="https://www.goodreads.com/user/show/100390317-carson" target="_blank">Goodreads</a>
         </div>
+    </div>
+
+    <!-- Truth, Beauty, Progress text and image -->
+    <div class="top-right">
+        <h3>Truth</h3>
+        <h3>Beauty</h3>
+        <h3>Progress</h3>
+        <!-- img src="https://via.placeholder.com/50" alt="Profile Picture"-->
     </div>
 
     <!-- Box links -->
@@ -162,59 +334,106 @@
         </div>
         <div class="box" onclick="showGallery(1)">
             <div>01</div>
-            <p>Design</p>
+            <p>Creative</p>
         </div>
         <div class="box" onclick="showGallery(2)">
             <div>02</div>
-            <p>Innovation</p>
+            <p>Impact</p>
         </div>
         <div class="box" onclick="showGallery(3)">
             <div>03</div>
-            <p>Research</p>
+            <p>Fun</p>
         </div>
     </div>
 
+
+
     <!-- Gallery Section -->
     <div id="gallery-0" class="gallery">
-        <h2>Gallery 00</h2>
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 00">
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 00">
+
+        <!-- Side Menu -->
+        <div class="side-menu">
+            <a href="#" id="item-1" onclick="changeContent('1')">Item 1</a>
+            <a href="#" id="item-2" onclick="changeContent('2')">Item 2</a>
+            <a href="#" id="item-3" onclick="changeContent('3')">Item 3</a>
+            <a href="#" id="item-4" onclick="changeContent('4')">Item 4</a>
+        </div>
     </div>
     <div id="gallery-1" class="gallery">
-        <h2>Gallery 01</h2>
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 01">
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 01">
+        <h2>Under Construction</h2>
+        <img src="bob.jpg" alt="Gallery 00">
     </div>
     <div id="gallery-2" class="gallery">
-        <h2>Gallery 02</h2>
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 02">
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 02">
+        <h2>Under Construction</h2>
+        <img src="bob.jpg" alt="Gallery 00">
     </div>
     <div id="gallery-3" class="gallery">
-        <h2>Gallery 03</h2>
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 03">
-        <img src="https://via.placeholder.com/500x300" alt="Gallery 03">
+        <h2>Under Construction</h2>
+        <img src="bob.jpg" alt="Gallery 00">
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <span>© 2024</span>
+        <a href="#">Bonus Content</a>
     </div>
 
     <!-- JavaScript to show gallery and slide effect -->
     <script>
-        function showGallery(id) {
-            // Hide all galleries
-            let galleries = document.querySelectorAll('.gallery');
-            galleries.forEach(function(gallery) {
-                gallery.style.display = 'none';
-            });
-            
-            // Show the selected gallery
-            document.getElementById('gallery-' + id).style.display = 'block';
 
-            // Slide up the boxes
+        function showGallery(id) {
+            let backgroundLayer = document.getElementById('background-layer');
+            let galleries = document.querySelectorAll('.gallery');
             let boxes = document.querySelectorAll('.box');
-            boxes.forEach(function(box) {
-                box.classList.add('slide-up');
-            });
+            let sideMenu = document.querySelector('.side-menu'); // Side menu
+
+            if (!isGalleryOpen) {
+                // Show the selected gallery
+                galleries.forEach(function (gallery) {
+                    gallery.style.display = 'none'; // Hide all galleries
+                });
+                document.getElementById('gallery-' + id).style.display = 'block'; // Show the selected gallery
+
+                // Show the side menu
+                sideMenu.classList.add('show');
+
+                // Slide up the background and boxes
+                backgroundLayer.classList.add('slide-up-background');
+                // Optionally slide up the boxes too
+                // boxes.forEach(function (box) {
+                //     box.classList.add('slide-up-boxes');
+                // });
+
+                // Adjust the footer to move up
+                document.querySelector('.footer').style.position = 'absolute';
+                document.querySelector('.footer').style.bottom = '0';
+
+                isGalleryOpen = true; // Gallery is now open
+            } else {
+                // Hide all galleries
+                galleries.forEach(function (gallery) {
+                    gallery.style.display = 'none';
+                });
+
+                // Hide the side menu
+                sideMenu.classList.remove('show');
+
+                // Slide down the background and boxes
+                backgroundLayer.classList.remove('slide-up-background');
+                boxes.forEach(function (box) {
+                    box.classList.remove('slide-up-boxes');
+                });
+
+                // Reset footer position
+                document.querySelector('.footer').style.position = 'relative';
+                document.querySelector('.footer').style.bottom = 'auto';
+
+                isGalleryOpen = false; // Gallery is now closed
+            }
         }
+
     </script>
 
 </body>
+
 </html>

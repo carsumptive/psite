@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Menu Example</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        /* Side menu styles */
+        .side-menu {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            padding-top: 20px;
+        }
+
+        /* Menu item styles */
+        .side-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        /* Highlight menu item on hover */
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+
+        /* Styling for selected item */
+        .side-menu a.selected {
+            background-color: #4CAF50;
+        }
+
+        /* Styling for images */
+        .main-image {
+            max-width: 100%;
+            max-height: 400px;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for text */
+        .main-text {
+            font-size: 1.5em;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <img id="main-image" class="main-image" src="https://via.placeholder.com/500x300" alt="Main Image">
+        <div id="main-text" class="main-text">Select an item from the menu</div>
+    </div>
+
+    <!-- Side Menu -->
+    <div class="side-menu">
+        <a href="#" id="item-1" onclick="changeContent('1')">Item 1</a>
+        <a href="#" id="item-2" onclick="changeContent('2')">Item 2</a>
+        <a href="#" id="item-3" onclick="changeContent('3')">Item 3</a>
+        <a href="#" id="item-4" onclick="changeContent('4')">Item 4</a>
+    </div>
+
+    <script>
+        function changeContent(item) {
+            // Reset all menu items
+            const menuItems = document.querySelectorAll('.side-menu a');
+            menuItems.forEach(item => item.classList.remove('selected'));
+
+            // Highlight the selected item
+            document.getElementById('item-' + item).classList.add('selected');
+
+            // Change the main content based on the selected item
+            const image = document.getElementById('main-image');
+            const text = document.getElementById('main-text');
+
+            switch (item) {
+                case '1':
+                    image.src = 'https://via.placeholder.com/500x300/ff7f7f/333333?text=Item+1';
+                    text.innerHTML = 'This is the content for Item 1.';
+                    break;
+                case '2':
+                    image.src = 'https://via.placeholder.com/500x300/7f7fff/333333?text=Item+2';
+                    text.innerHTML = 'This is the content for Item 2.';
+                    break;
+                case '3':
+                    image.src = 'https://via.placeholder.com/500x300/7fff7f/333333?text=Item+3';
+                    text.innerHTML = 'This is the content for Item 3.';
+                    break;
+                case '4':
+                    image.src = 'https://via.placeholder.com/500x300/ffff7f/333333?text=Item+4';
+                    text.innerHTML = 'This is the content for Item 4.';
+                    break;
+                default:
+                    image.src = 'https://via.placeholder.com/500x300';
+                    text.innerHTML = 'Select an item from the menu';
+            }
+        }
+    </script>
+</body>
+
+</html>
