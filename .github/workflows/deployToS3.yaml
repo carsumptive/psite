@@ -25,9 +25,6 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Debug OIDC Token
-        run: echo "${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}"
-
       # Upload a file to AWS S3
       - name: Copy index.html to S3
         run: |
