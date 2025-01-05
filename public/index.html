@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Home</title>
     <style>
         /* General styles */
         body {
@@ -398,7 +398,7 @@
             const correctPassword = "Tennis";
 
             // Prompt the user for the password
-            const userPassword = prompt("Answer the riddle about one of my favorite things: \n\nI dance on a court without shoes or feet,\nWith a partner or foe, my rhythm's a beat. \nI'm served in silence, yet I make a loud sound, \nA love-hate affair where the lines all surround. \n\nWhat am I?");
+            const userPassword = prompt("Answer the riddle about one of my favorite things: \n\nA dance on a court without shoes or feet,\nWith a partner or foe, my rhythm's a beat. \nI'm served in silence, yet I make a loud sound, \nA love-hate affair where the lines all surround. \n\nWhat am I?");
 
             // Check if the entered password matches the correct password (case-insensitively)
             if (userPassword && userPassword.toLowerCase() === correctPassword.toLowerCase()) {
@@ -406,7 +406,7 @@
                 window.location.href = "personalpage.html";
             } else if (userPassword !== null) {
                 // Notify the user of an incorrect password
-                alert("Incorrect password. Access denied.");
+                alert("Incorrect. Access denied.");
             }
         }
     </script>
