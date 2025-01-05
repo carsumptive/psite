@@ -23,7 +23,7 @@
 
         /* Top burnt orange rectangle */
         .header {
-            background-color: #CC5500;
+            background-color: #d1661a;
             /* burnt orange color */
             color: white;
             padding: 20px;
@@ -279,33 +279,45 @@
             <p style="font-size: 1em; margin: 10px 0;">I’m excited about energy, automation, and people</p>
             <div style="margin-bottom: 30px;"></div>
             <p style="font-size: .55em; line-height: 1.1;">Right now, I am..</p>
-            <p style="font-size: .55em; line-height: .5;"> - Working at Blue Origin on a satellite platform for
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;"> - Working at Blue Origin on a satellite
+                platform for
                 long-term
                 orbital infrastructure</p>
-            <p style="font-size: .55em; line-height: .5;">- Studying Electrical and Computer Engineering as a graduate
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em; text-indent: 1em;">- Studying Electrical and
+                Computer
+                Engineering as a graduate
                 student at University of Washington</p>
-            <p style="font-size: .55em; line-height: .5;">- Building a tool for accelerating renewable energy build-out
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Building a tool for accelerating renewable
+                energy build-out
             </p>
-            <p style="font-size: .55em; line-height: .5;">- Writing short-story fiction and a book about moss</p>
-            <p style="font-size: .55em; line-height: .5;">- Training to summit all 5 stratovolcanoes in Washington</p>
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Writing short-story fiction and a book
+                about moss</p>
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Training to summit all 5 stratovolcanoes
+                in Washington</p>
             <div style="margin-bottom: 40px;"></div>
             <p style="font-size: .55em; line-height: .5;">My imagination is captured by..</p>
-            <p style="font-size: .55em; line-height: .5;">- The unspeakably vast world of applications for
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- The unspeakably vast world of applications
+                for
                 renewable-powered energy too-cheap-to-meter</p>
-            <p style="font-size: .55em; line-height: .5;">- The great human and robotic space exploration odyssey</p>
-            <p style="font-size: .55em; line-height: .5;">- Creation that makes you question where nature ends and human
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- The great human and robotic space
+                exploration odyssey</p>
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Creation that makes you question where
+                nature ends and human
                 begins</p>
-            <p style="font-size: .55em; line-height: .5;">- The electrical, political, and economic complexities of
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- The electrical, political, and economic
+                complexities of
                 electrifying the grids of the globe</p>
-            <p style="font-size: .55em; line-height: .5;">- Moss</p>
-            <p style="font-size: .55em; line-height: .5;">- Juiced-up human-computer-human interaction and the
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Moss</p>
+            <p style="font-size: .55em; line-height: .5; text-indent: 1em;">- Juiced-up human-computer-human interaction
+                and the
                 wonderfully wacky world of augmented reality</p>
             <div style="margin-bottom: 40px;"></div>
-            <p style="font-size: .55em; line-height: .5; white-space: nowrap;">I am a runner, cyclist, mountain-climber,
+            <p style="font-size: .55em; line-height: .5;white-space: nowrap;">I am a runner, cyclist,
+                mountain-climber,
                 self-proclaimed handyman, music-enjoyer, writer, data junkie, & environmentalist. I'm also usually
                 outside!</p>
-            <p style="font-size: .55em; line-height: .5;">Reach out if any of that strikes a chord
-                with you!</p>
+            <p style="font-size: .55em; line-height: .5;">If any of that strikes a chord
+                with you, reach out!</p>
         </div>
 
         <!-- Social media links inside header -->
@@ -350,14 +362,16 @@
 
     <!-- Gallery Section -->
     <div id="gallery-0" class="gallery">
-
-        <!-- Side Menu -->
+        <h2>Under Construction</h2>
+        <img src="bob.jpg" alt="Gallery 00">
+        <!-- Side Menu 
         <div class="side-menu">
             <a href="#" id="item-1" onclick="changeContent('1')">Item 1</a>
             <a href="#" id="item-2" onclick="changeContent('2')">Item 2</a>
             <a href="#" id="item-3" onclick="changeContent('3')">Item 3</a>
             <a href="#" id="item-4" onclick="changeContent('4')">Item 4</a>
         </div>
+        -->
     </div>
     <div id="gallery-1" class="gallery">
         <h2>Under Construction</h2>
@@ -374,65 +388,81 @@
 
     <!-- Footer -->
     <div class="footer">
-        <span>© 2024</span>
-        <a href="#">Bonus Content</a>
+        <span>© Carson 2024</span>
+        <a href="#" onclick="openBonusPage()">Bonus Content</a>
     </div>
+
+    <script>
+        function openBonusPage() {
+            // Define the correct password
+            const correctPassword = "Tennis";
+
+            // Prompt the user for the password
+            const userPassword = prompt("Answer the riddle about one of my favorite things: \n\nI dance on a court without shoes or feet,\nWith a partner or foe, my rhythm's a beat. \nI'm served in silence, yet I make a loud sound, \nA love-hate affair where the lines all surround. \n\nWhat am I?");
+
+            // Check if the entered password matches the correct password (case-insensitively)
+            if (userPassword && userPassword.toLowerCase() === correctPassword.toLowerCase()) {
+                // Redirect to the landing page
+                window.location.href = "personalpage.html";
+            } else if (userPassword !== null) {
+                // Notify the user of an incorrect password
+                alert("Incorrect password. Access denied.");
+            }
+        }
+    </script>
 
     <!-- JavaScript to show gallery and slide effect -->
     <script>
+        // Global variable to track the gallery state
+        let isGalleryOpen = false;
 
         function showGallery(id) {
-            let backgroundLayer = document.getElementById('background-layer');
-            let galleries = document.querySelectorAll('.gallery');
-            let boxes = document.querySelectorAll('.box');
-            let sideMenu = document.querySelector('.side-menu'); // Side menu
+            const backgroundLayer = document.getElementById('background-layer');
+            const galleries = document.querySelectorAll('.gallery');
+            const selectedGallery = document.getElementById('gallery-' + id);
 
             if (!isGalleryOpen) {
+                // Hide all galleries
+                galleries.forEach(gallery => (gallery.style.display = 'none'));
                 // Show the selected gallery
-                galleries.forEach(function (gallery) {
-                    gallery.style.display = 'none'; // Hide all galleries
-                });
-                document.getElementById('gallery-' + id).style.display = 'block'; // Show the selected gallery
+                if (selectedGallery) {
+                    selectedGallery.style.display = 'block';
+                }
 
-                // Show the side menu
-                sideMenu.classList.add('show');
-
-                // Slide up the background and boxes
+                // Slide up the background
                 backgroundLayer.classList.add('slide-up-background');
-                // Optionally slide up the boxes too
-                // boxes.forEach(function (box) {
-                //     box.classList.add('slide-up-boxes');
-                // });
 
-                // Adjust the footer to move up
+                // Adjust the footer
                 document.querySelector('.footer').style.position = 'absolute';
-                document.querySelector('.footer').style.bottom = '0';
 
-                isGalleryOpen = true; // Gallery is now open
+                isGalleryOpen = true; // Mark gallery as open
             } else {
                 // Hide all galleries
-                galleries.forEach(function (gallery) {
-                    gallery.style.display = 'none';
-                });
+                galleries.forEach(gallery => (gallery.style.display = 'none'));
 
-                // Hide the side menu
-                sideMenu.classList.remove('show');
-
-                // Slide down the background and boxes
+                // Slide down the background
                 backgroundLayer.classList.remove('slide-up-background');
-                boxes.forEach(function (box) {
-                    box.classList.remove('slide-up-boxes');
-                });
 
                 // Reset footer position
                 document.querySelector('.footer').style.position = 'relative';
-                document.querySelector('.footer').style.bottom = 'auto';
 
-                isGalleryOpen = false; // Gallery is now closed
+                isGalleryOpen = false; // Mark gallery as closed
             }
         }
 
+        // Add click event listeners to galleries to hide them when clicked
+        document.querySelectorAll('.gallery').forEach(gallery => {
+            gallery.addEventListener('click', () => {
+                gallery.style.display = 'none';
+                const backgroundLayer = document.getElementById('background-layer');
+                backgroundLayer.classList.remove('slide-up-background');
+                document.querySelector('.footer').style.position = 'relative';
+                isGalleryOpen = false;
+            });
+        });
+
     </script>
+
 
 </body>
 
